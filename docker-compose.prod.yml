@@ -1,0 +1,11 @@
+services:
+  app:
+    build: 
+      context: .
+      target: production
+    ports:
+    - "8000:8000"
+    restart: unless-stopped
+
+
+    
