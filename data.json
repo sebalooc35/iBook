@@ -1,0 +1,16 @@
+{
+    "books":[
+        {
+            "title":"The Great Gatsby",
+            "price":200
+        },
+        {
+            "title":"Lolita",
+            "price":300
+        },
+        {
+            "title":"A Tale of Two Cities",
+            "price":400
+        }
+    ]
+}
