@@ -2,15 +2,21 @@
     "books":[
         {
             "title":"The Great Gatsby",
-            "price":200
+            "imageURL":"./images/greatGatsbyCover.jpg",
+            "imageALT":"a beautiful couple dancing",
+            "author":"F. Scott Fitzgerald"
         },
         {
             "title":"Lolita",
-            "price":300
+            "imageURL":"./images/lolitaCover.jpg",
+            "imageALT":"a beautiful woman eating a lolipop",
+            "author":"Vladimir Nabokov"
         },
         {
             "title":"A Tale of Two Cities",
-            "price":400
+            "imageURL":"./images/aTaleOfTwoCitiesCover.jpg",
+            "imageALT":"two soldiers escorting a man to a guillotine",
+            "author":"Charles Dickens"
         }
     ]
 }
