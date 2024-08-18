@@ -20,6 +20,8 @@ FROM base AS production
 
 RUN npm install --only=production
 
+COPY . .
+
 EXPOSE 8000
 
 CMD [ "npm", "start" ]

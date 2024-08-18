@@ -5,6 +5,8 @@ services:
       target: production
     ports:
     - "8000:8000"
+    environment:
+      NODE_ENV: production
     restart: unless-stopped
 
 
