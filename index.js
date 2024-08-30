@@ -2,6 +2,7 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 const url = require('url');
+const renderPage = require('./modules/renderPage');
 
 const data = fs.readFileSync('./data.json', 'utf-8');
 const dataJson = JSON.parse(data);
@@ -28,48 +29,21 @@ const contentTypeMap = {
 const server = http.createServer((req, res) => {
     const pathName = req.url;
 
-    switch (pathName){
-        case '/': 
-            fs.readFile('./home.html', 'utf-8', (err, home) => {
-                if (err) {
-                    res.writeHead(404);
-                    res.end('HTML file not found');
-                    return;
-                }
-                fs.readFile('./card.html', 'utf-8', (err, card) => {
-                    if (err) {
-                        res.writeHead(404);
-                        res.end('HTML file not found');
-                        return;
-                    }
-                    res.writeHead(200, {
-                    'Content-type':'text/html'
-                    });
-                    const cardsHTML = dataJson.books.map((el) => {
-                        let output = card.replace(/{%AUTHOR%}/g, el.author);
-                        output = output.replace(/{%TITLE%}/g, el.title);
-                        output = output.replace(/{%IMAGEURL%}/g, el.imageURL);
-                        output = output.replace(/{%IMAGEALT%}/g, el.imageALT);
-                        return output;
-                    }).join('');
-
-                    const finalHTML = home.replace(/{%CARDS%}/g, cardsHTML);
-
-                    res.end(finalHTML);
-                });
-            });
+    switch (pathName) {
+        case '/':
+            renderPage(res, dataJson);
             break;
-        
+
         case '/product':
             res.writeHead(200, {
-                'Content-type':'text/html'
+                'Content-type': 'text/html'
             });
             res.end();
             break;
 
         case '/api':
             res.writeHead(400, {
-                'Content-type':'application/json'
+                'Content-type': 'application/json'
             });
             res.end(data);
             break;
@@ -81,7 +55,7 @@ const server = http.createServer((req, res) => {
                     res.end('File not found');
                 }
                 res.writeHead(200, {
-                'Content-type':contentTypeMap[path.extname(pathName)]
+                    'Content-type': contentTypeMap[path.extname(pathName)]
                 });
                 res.end(file);
             });

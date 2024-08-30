@@ -1,5 +1,6 @@
 services:
   app:
+    container_name: book-store
     build: 
       context: .
       target: development
