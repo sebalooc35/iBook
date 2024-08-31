@@ -31,19 +31,24 @@ const server = http.createServer((req, res) => {
 
     switch (pathName) {
         case '/':
-            renderPage(res, dataJson);
+            res.writeHead(200, {
+                'Content-type': contentTypeMap['.html']
+            });
+            page = renderPage(dataJson);
+            console.log(page);
+            res.end(page);
             break;
 
         case '/product':
             res.writeHead(200, {
-                'Content-type': 'text/html'
+                'Content-type': contentTypeMap['.html']
             });
             res.end();
             break;
 
         case '/api':
             res.writeHead(400, {
-                'Content-type': 'application/json'
+                'Content-type': contentTypeMap['.html']
             });
             res.end(data);
             break;
@@ -63,6 +68,6 @@ const server = http.createServer((req, res) => {
     }
 });
 
-server.listen(8000, '0.0.0.0', () => {
-    console.log('Listening on port 8000');
+server.listen(80, '0.0.0.0', () => {
+    console.log('Listening on port 80');
 });
